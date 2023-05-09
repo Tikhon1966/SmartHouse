@@ -13,65 +13,70 @@ public class Radio {
         return currentVolume;
     }
 
-    public void setNextStation(int newStation) {
-        if (newStation < 0) {
-            return;
-        }
-        if (newStation > 9) {
-            return;
-        }
-        if (newStation == 9) {
-            station = 0;
-        } else {
-            station = newStation + 1;
-        }
-    }
-
-    public void setPrevStation(int newStation) {
-        if (newStation < 0) {
-            return;
-        }
-        if (newStation > 9) {
-            return;
-        }
-        if (newStation == 0) {
-            station = 9;
-        } else {
-            station = newStation - 1;
-        }
-    }
-
     public void setStation(int newStation) {
         if (newStation < 0) {
             return;
         }
         if (newStation > 9) {
-            return;
+            newStation = 9;
+            station = newStation;
+        } else {
+            station = newStation;
         }
-        station = newStation;
     }
 
-
-    public void setIncreaseVolume(int newCarrentVolume) {
-        if (newCarrentVolume < 0) {
-            return;
+    public void nextStation() {
+        if (station == 9) {
+            int nextStation = 0;
+            setStation(nextStation);
+        } else {
+            int nextStation = station + 1;
+            setStation(nextStation);
         }
-        if (newCarrentVolume >= 100) {
-            return;
-        }
-        currentVolume = newCarrentVolume + 1;
     }
 
-    public void setDecreaseVolume(int newCarrentVolume) {
-        if (newCarrentVolume <= 0) {
+    public void prevStation() {
+        if (station == 0) {
+            int prevStation = 9;
+            setStation(prevStation);
+        } else {
+            int prevStation = station - 1;
+            setStation(prevStation);
+        }
+
+    }
+
+    public void setCurrentVolume(int newCurrentVolume) {
+        if (newCurrentVolume < 0) {
             return;
         }
-        if (newCarrentVolume > 100) {
-            return;
+        if (newCurrentVolume > 100) {
+            newCurrentVolume = 100;
+            currentVolume = newCurrentVolume;
+        } else {
+            currentVolume = newCurrentVolume;
         }
-        currentVolume = newCarrentVolume - 1;
+    }
 
+    public void increaseVolume() {
+        if (currentVolume == 100) {
+            int increaseVolume = 100;
+            setCurrentVolume(increaseVolume);
+        } else {
+            int increaseVolume = currentVolume + 1;
+            setCurrentVolume(increaseVolume);
+        }
 
+    }
+
+    public void decreaseVolume() {
+        if (currentVolume == 0) {
+            int decreaseVolume = 0;
+            setCurrentVolume(decreaseVolume);
+        } else {
+            int decreaseVolome = currentVolume - 1;
+            setCurrentVolume(decreaseVolome);
+        }
     }
 }
 
