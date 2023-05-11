@@ -1,7 +1,9 @@
 package org.example;
 
 public class Radio {
-    private int station;
+    private int minStation = 0;
+    private int maxStation = 9;
+    private int station = minStation;
 
     private int currentVolume;
 
